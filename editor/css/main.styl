@@ -1,0 +1,61 @@
+@import nib
+
+$code-width = 35%
+$code-height = (100% / 3)
+$md-cards-padding = 8px
+
+md-toolbar
+  &.small
+    min-height: 40px
+    .md-toolbar-tools
+      height: 40px
+    h3
+      font-weight: 500
+  h3
+    margin: auto 0
+  md-list
+    md-list-item.selected
+      p
+        color: #69F0AE
+      .md-avatar
+        svg
+          fill: #69F0AE
+
+md-content
+  background: none
+  
+md-list-item
+  overflow: hidden
+  button
+    width:100%
+    text-align:left !important
+
+md-card
+  overflow: hidden
+  
+.content
+  background-color: #F1F1F1
+
+.relative
+  position: relative
+  
+.absolute
+  absolute: top bottom left right
+
+.iframe-result
+  border: none
+  
+#editor
+  absolute: top $md-cards-padding bottom $md-cards-padding left $md-cards-padding right $md-cards-padding
+
+#col-code
+#col-result
+  absolute: top bottom
+  
+#col-code
+  left: 0
+  width: $code-width
+  
+#col-result
+  right: 0
+  width: 100% - $code-width

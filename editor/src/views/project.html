@@ -1,0 +1,56 @@
+<md-dialog aria-label="Editar proyecto" ng-cloak>
+  <form name="projectForm">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Editar proyecto</h2>
+        <span flex></span>
+        <md-button ng-click="cancelModal()" aria-label="Cerrar" class="md-icon-button">
+          <md-icon md-svg-icon="close"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <div layout="column">
+          <md-input-container class="md-block">
+            <label>Nombre</label>
+            <input required md-no-asterisk name="name" ng-model="record.name">
+          </md-input-container>
+          <div flex layout="row">
+            <fieldset flex class="standard" >
+              <legend>CSS</legend>
+              <div layout="column" layout-wrap flex>
+                <div ng-repeat="(key, item) in linksAndScripts.data.links">
+                  <md-checkbox ng-checked="!!record.links[key]" ng-click="toggle(key, record.links, item)">
+                    {{ key }}
+                  </md-checkbox>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset flex class="standard" >
+              <legend>JS</legend>
+              <div layout="column" layout-wrap flex>
+                <div ng-repeat="(key, item) in linksAndScripts.data.scripts">
+                  <md-checkbox ng-checked="!!record.scripts[key]" ng-click="toggle(key, record.scripts, item)">
+                    {{ key }}
+                  </md-checkbox>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <span flex></span>
+      <md-button ng-click="cancelModal()" aria-label="Cerrar" class="md-warn">
+        Cancelar
+      </md-button>
+      <md-button ng-click="save()" class="md-primary">
+        Guardar
+      </md-button>
+    </md-dialog-actions>
+
+  </form>
+</md-dialog>

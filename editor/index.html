@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es" >
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>Codedit</title>
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <link rel="stylesheet" href="vendor/roboto.css"/>
+    <link rel="stylesheet" href="vendor/angular-material.min.css"/>
+    <link rel="stylesheet" href="css/main.css"/>
+
+    <style type="text/css">
+        /**
+         * Hide when Angular is not yet loaded and initialized
+         */
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+          display: none !important;
+        }
+    </style>
+
+    <base target="_blank">
+
+  </head>
+
+  <body ng-app="app" layout="row" ng-cloak>
+
+    <div flex layout="column" tabIndex="-1" role="main" ng-controller="GlobalCtrl">
+
+      <md-toolbar layout="row" class="md-whiteframe-z1">
+        <div class="md-toolbar-tools">
+          <h3>Codedit</h3>
+          <span ng-if="!(selected.name | empty)">&nbsp;|&nbsp;</span>
+          <h4>{{selected.name}}</h4>
+          <span flex></span>
+          <md-button ng-click="add()" aria-label="Nuevo" class="md-icon-button">
+            <md-icon md-svg-icon="add"></md-icon>
+          </md-button>
+          <md-button ng-click="update()" aria-label="Guardar project" class="md-icon-button">
+            <md-icon md-svg-icon="save"></md-icon>
+          </md-button>
+          <md-button ng-click="upload()" aria-label="Guardar project" class="md-icon-button">
+            <md-icon md-svg-icon="backup"></md-icon>
+          </md-button>
+          <md-button ng-click="settings($event)" aria-label="Settings" class="md-icon-button">
+            <md-icon md-svg-icon="settings"></md-icon>
+          </md-button>
+          <md-button ng-click="play()" aria-label="Ejecutar" class="md-icon-button">
+            <md-icon md-svg-icon="play"></md-icon>
+          </md-button>
+          <md-button ng-click="toggleSideBar('ejemplos')" aria-label="Mostrar proyectos">
+            Ejemplos
+          </md-button>
+          <md-button ng-click="toggleSideBar('misEjemplos')" aria-label="Mostrar proyectos">
+            Mis ejemplos
+          </md-button>
+        </div>
+      </md-toolbar>
+
+      <md-content flex layout="row" class="md-primary">
+
+        <md-sidenav class="md-sidenav-right"
+          md-component-id="misEjemplos"
+          ng-click="toggleSideBar('misEjemplos')" aria-label="Ver mis ejemplos"
+          md-disable-backdrop
+          md-is-locked-open2="true"
+          md-whiteframe="4"
+          layout="column">
+          
+          <md-toolbar flex layout="column">
+            <md-content flex>
+              <md-list>
+                <md-list-item ng-repeat="p in mySamples" ng-click="selectSample(p)" ng-class="{'selected' : p === selected}">
+                  <md-icon md-svg-icon="{{p === selected? 'selected' : 'code'}}" class="md-avatar"></md-icon>
+                  <p>{{p.name}}</p>
+                  <md-button ng-click="delete(p, $event)" aria-label="Eliminar proyecto" class="md-icon-button md-warn md-hue-1">
+                    <md-icon md-svg-icon="delete"></md-icon>
+                  </md-button>
+                </md-list-item>
+              </md-list>
+            </md-content>
+
+          </md-toolbar>
+
+        </md-sidenav>
+
+        <md-content flex layout-gt-xs="column" class="content">
+          <div flex class="relative">
+            <div id="editor">
+              <div id="col-code" layout="column">
+                <md-card ng-class="{flex: showHtml}">
+                  <md-toolbar class="small">
+                    <div class="md-toolbar-tools">
+                      <h3>HTML</h3>
+                      <span flex></span>
+                      <md-button ng-click="showHtml=!showHtml" aria-label="Ver HTML" class="md-icon-button">
+                        <md-icon md-svg-icon="{{showHtml?'down':'up'}}"></md-icon>
+                      </md-button>
+                    </div>
+                  </md-toolbar>
+                  <md-content flex ng-model="code.html" ui-ace="aceOptions('html')"></md-content>
+                </md-card>
+                <md-card ng-class="{flex: showCss}">
+                  <md-toolbar class="small">
+                    <div class="md-toolbar-tools">
+                      <h3>CSS</h3>
+                      <span flex></span>
+                      <md-button ng-click="showCss=!showCss" aria-label="Ver HTML" class="md-icon-button">
+                        <md-icon md-svg-icon="{{showCss?'down':'up'}}"></md-icon>
+                      </md-button>
+                    </div>
+                  </md-toolbar>
+                  <md-content flex ng-model="code.css" ui-ace="aceOptions('css')"></md-content>
+                </md-card>
+                <md-card ng-class="{flex: showJs}">
+                  <md-toolbar class="small">
+                    <div class="md-toolbar-tools">
+                      <h3>JS</h3>
+                      <span flex></span>
+                      <md-button ng-click="showJs=!showJs" aria-label="Ver HTML" class="md-icon-button">
+                        <md-icon md-svg-icon="{{showJs?'down':'up'}}"></md-icon>
+                      </md-button>
+                    </div>
+                  </md-toolbar>
+                  <md-content flex ng-model="code.js" ui-ace="aceOptions('javascript')"></md-content>
+                </md-card>
+              </div>
+              <div id="col-result" layout="column">
+                <md-card flex>
+                  <md-toolbar class="small">
+                    <div class="md-toolbar-tools">
+                      <h3>Preview</h3>
+                      <span flex></span>
+                    </div>
+                  </md-toolbar>
+                  <md-content flex layout="column">
+                    <iframe flex srcdoc="{{resultHtml | trust}}" class="iframe-result"></iframe>
+                  </md-content>
+                </md-card>
+              </div>
+            </div>
+          </div>
+        </md-content>
+
+        <md-sidenav class="md-sidenav-right"
+          md-component-id="ejemplos"
+          ng-click="toggleSideBar('ejemplos')" aria-label="Ver ejemplos"
+          md-disable-backdrop
+          md-is-locked-open2="true"
+          md-whiteframe="4"
+          layout="column">
+          
+          <md-toolbar flex layout="column">
+            <md-content flex>
+              <md-list>
+                <md-list-item ng-repeat="p in samples.data" ng-click="selectSample(p)" ng-class="{'selected' : p === selected}">
+                  <md-icon md-svg-icon="{{p === selected? 'selected' : 'code'}}" class="md-avatar"></md-icon>
+                  <p>{{p.name}}</p>
+                  <md-button ng-click="delete(p, $event)" aria-label="Eliminar proyecto" class="md-icon-button md-warn md-hue-1">
+                    <md-icon md-svg-icon="delete"></md-icon>
+                  </md-button>
+                </md-list-item>
+              </md-list>
+            </md-content>
+
+          </md-toolbar>
+
+        </md-sidenav>
+
+      </md-content>
+
+    </div>
+    
+    <script src="vendor/ace/ace.js"></script>
+    <script src="vendor/ace/mode-css.js"></script>
+    <script src="vendor/ace/mode-html.js"></script>
+    <script src="vendor/ace/mode-javascript.js"></script>
+
+    <script src="vendor/angular.min.js"></script>
+    <script src="vendor/angular-animate.min.js"></script>
+    <script src="vendor/angular-aria.min.js"></script>
+    <script src="vendor/angular-sanitize.min.js"></script>
+    <script src="vendor/angular-material.min.js"></script>
+    <script src="vendor/ui-ace.min.js"></script>
+ 
+    <script src="src/app.js"></script>
+
+  </body>
+</html>

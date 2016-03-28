@@ -1,0 +1,68 @@
+md-toolbar.small {
+  min-height: 40px;
+}
+md-toolbar.small .md-toolbar-tools {
+  height: 40px;
+}
+md-toolbar.small h3 {
+  font-weight: 500;
+}
+md-toolbar h3 {
+  margin: auto 0;
+}
+md-toolbar md-list md-list-item.selected p {
+  color: #69f0ae;
+}
+md-toolbar md-list md-list-item.selected .md-avatar svg {
+  fill: #69f0ae;
+}
+md-content {
+  background: none;
+}
+md-list-item {
+  overflow: hidden;
+}
+md-list-item button {
+  width: 100%;
+  text-align: left !important;
+}
+md-card {
+  overflow: hidden;
+}
+.content {
+  background-color: #f1f1f1;
+}
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.iframe-result {
+  border: none;
+}
+#editor {
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 8px;
+  right: 8px;
+}
+#col-code,
+#col-result {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+#col-code {
+  left: 0;
+  width: 35%;
+}
+#col-result {
+  right: 0;
+  width: 65%;
+}
