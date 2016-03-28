@@ -1,0 +1,193 @@
+================================================================================
+Créditos
+--------------------------------------------------------------------------------
+Presentación elaborada sobre Reveal JS [http://lab.hakim.se/reveal-js/]
+
+================================================================================
+Bibliografías
+--------------------------------------------------------------------------------
+Real Académia Española (2014). «computadora». Diccionario de la lengua española (23.ª edición).
+  Madrid: Espasa
+  [Artículo en línea] Disponible en: http://dle.rae.es/?id=A4hIGQC.
+  [Consulta: el 2016, marzo 25]
+
+Real Académia Española (2014). «hardware». Diccionario de la lengua española (23.ª edición).
+  Madrid: Espasa
+  [Artículo en línea] Disponible en: http://dle.rae.es/?id=K1Wwkf7.
+  [Consultado el 2016, marzo 25]
+
+Real Académia Española (2014). software». Diccionario de la lengua española (23.ª edición).
+  Madrid: Espasa
+  [Artículo en línea] Disponible en: http://dle.rae.es/?id=K1Wwkf7.
+  [Consultado el 2016, marzo 25]
+
+Carretero, J., García, F., De Miguel, P. y Pérez, F. (2001). Sistemas Operativos: Una
+  Visión Aplicada. Madrid: MacGraw-Hill
+
+Zheng, P. y Ni, L. (2006). Smart Phone and Next Generation Mobile Computing
+  [Libro en línea] (p. 2). Disponible en: http://books.google.co.ve/books?id=iyEPCX5V0oC
+  [Consulta: 2013, Junio 26]. San Francisco: Morgan Kaufmann.
+
+World Wide Web Consortium (2007). Device Description Landscape 1.0.
+  [Documento en línea] Disponible en: http://www.w3.org/TR/dd-landscape/
+  [Consulta: 2014, Marzo 21]
+
+Apache Cordova (2016). Architectural overview of Cordova platform - Apache Cordova
+  [Documento en línea] Disponible en: https://cordova.apache.org/docs/en/latest/guide/overview/
+  [Consulta: el 2016, marzo 26]
+
+================================================================================
+Imágenes
+--------------------------------------------------------------------------------
+Gran parte de las imágenes fueron editadas para esta presentación
+--------------------------------------------------------------------------------
+angularjs.png
+  [http://lawsonry.com/2014/05/diy-angularjs-seo-with-phantomjs-the-easy-way/]
+  [http://pascalprecht.github.io/slides/angularjs-insights/img/angularjs-logo.png]
+
+angular-material-logo.png
+angular-material-logo-no-name.png
+  [https://material.angularjs.org/latest/]
+  [https://material.angularjs.org/latest/img/icons/angular-logo.svg]
+
+computador.png
+  [https://www.behance.net/gallery/12977509/90s-Computer-Flat-Design]
+  [https://mir-s3-cdn-cf.behance.net/project_modules/disp/e810a112977509.5626f8e1e1983.png]
+
+cordova.png
+  [https://www.otreva.com/web-development/mobile-application-development-cordova/]
+  [https://s3.amazonaws.com/otreva-cdn-3/wp-content/uploads/2014/11/cordova-logo.png]
+
+hardware.png
+  [http://www.123rf.com/photo_42770112_stock-vector-computer-hardware-flat-illustration-concepts-and-flat-icons-set.html]
+  [http://previews.123rf.com/images/magurok/magurok1507/magurok150700005/42770112-Computer-hardware-flat-illustration-concepts-and-flat-icons-set-Stock-Vector.jpg]
+
+html-css-js.png
+  [http://www.murciastudio.es/html5/]
+  [http://www.murciastudio.es/wp-content/uploads/2015/01/languages.png]
+
+keyboard.png
+  [https://play.google.com/store/apps/details?id=com.google.android.inputmethod.latin]
+  [https://lh4.ggpht.com/_es02c1YpzrzF8z7USwyA7I4nOO3UHR6CZ9d8s-IrA8bvrROle1hNOCZq6RmSKeurK8=w300]
+
+sistemas-operativos.png
+  [http://www.xatakandroid.com/sistema-operativo/google-actualiza-las-lineas-de-diseno-de-material-design-con-hasta-siete-nuevas-secciones]
+  [http://i.blogs.es/581100/social/original.png]
+
+software.png
+  [http://www.mobigeni.com/collections-free-ios7-flat-ui-style-icon-packs/]
+  [http://www.mobigeni.com/wp-content/uploads/2013/10/flat_ui_program_icons.jpg]
+
+binario.png
+  [http://mx.depositphotos.com/92945680/stock-illustration-color-binary-code-flat-icons.html]
+  [http://st2.depositphotos.com/1180941/9294/v/950/depositphotos_92945680-Color-binary-code-flat-icons.jpg?download=true]
+
+left-arrow.png
+  [http://freeflaticons.com/miscellaneous-icons/arrow-down-flat-icon]
+  [http://freeflaticons.com/wp-content/uploads/2014/09/down-copy-1410790832n8k4g.png]
+
+programador.png
+  [http://www.iconshock.com/icons/programmer-icon.html]
+  [http://www.iconshock.com/img_vista/FLAT/jobs/jpg/programmer_icon.jpg]
+
+user.png
+  [http://ctis.utep.edu/directory/]
+  [http://www.likhapora.com/image/tutor.png]
+
+windows.png
+  [https://zato.io/downloads.html]
+  [https://zato.io/static/img/icons/windows-icon.png]
+
+linux.png
+  [http://coryrj1995.deviantart.com/art/Flat-Tux-553076344]
+  [http://orig11.deviantart.net/22c6/f/2014/149/2/2/linux_2014_logo_by_0rax0-d7k6c3x.png]
+
+mac-os-x.png
+  [https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/The_OS_X_Logo.svg/2000px-The_OS_X_Logo.svg.png]
+  [https://commons.wikimedia.org/wiki/File:The_OS_X_Logo.svg]
+  [http://fallout.wikia.com/wiki/File:Apple-logo.png]
+  [http://vignette2.wikia.nocookie.net/fallout/images/a/ab/Apple-logo.png/revision/latest?cb=20150618195057]
+
+cellphone.png
+  [http://flatdesign.im/free-vectors/technology/cell_phone/4-0-119]
+  [http://flatdesign.im/_ph/4/226429908.png]
+
+android.png
+  [http://www.titanui.com/33683-flat-android-robot-logo-psd/]
+  [http://www.titanui.com/wp-content/uploads/2014/01/22/Simple-Android-Robot-Logo-Vector-PSD.png]
+
+eclipsze.png
+  [http://www.eclipse.org/forums/?]
+  [https://www.eclipse.org/eclipse.org-common/themes/solstice/public/images/logo/eclipse-800x188.png]
+
+dispositivo-movil.png
+  [http://www.iconarchive.com/show/small-n-flat-icons-by-paomedia/device-mobile-phone-icon.html]
+  [http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/device-mobile-phone-icon.png]
+  [http://www.greenfig.com.mx/Shop]
+  [http://www.greenfig.com.mx/img/store/world.png]
+
+mobile-app.png
+  [http://www.dreamstime.com/royalty-free-stock-images-smartphone-apps-flat-icon-design-image37850619]
+  [http://thumbs.dreamstime.com/z/smartphone-apps-flat-icon-design-37850619.jpg]
+
+ios.png
+  [http://www.i-verve.com/apple-ios-development-solutions.html]
+  [http://www.i-verve.com/wp-content/themes/i-verve/images/technology/iOS.svg]
+
+windows-phone.png
+  [https://commons.wikimedia.org/wiki/File:Windows_logo_-_2012.svg]
+  [https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Windows_logo_-_2012.svg/2000px-Windows_logo_-_2012.svg.png]
+
+bb-os.png
+  [http://techspective.net/2015/09/04/blackberry-finally-accepts-my-advice-from-two-years-ago-and-acquires-good-technology/]
+  [http://techspective.net/wp-content/uploads/2015/09/bblogo.png]
+
+android-studio.png
+  [http://www.elkady.xyz/blog/]
+  [http://www.elkady.xyz/assets/images/android-studio-logo.png]
+
+java.png
+  [http://blogs.cisco.com/performance/mpi-and-java-redux]
+  [http://blogs.cisco.com/wp-content/uploads/Java-logo.jpg]
+
+xcode.png
+  [http://andybargh.com/create-a-new-project-in-xcode-5/]
+  [http://andybargh.com/wp-content/uploads/2014/02/Xcode.png]
+
+objetivec.png
+  [https://twitter.com/objectivec]
+  [https://pbs.twimg.com/profile_images/354883944/objectivec_twitter_logo.png]
+
+swift.png
+  [https://devimages.apple.com.edgekey.net/assets/elements/icons/swift/swift-128x128.png]
+  [https://developer.apple.com/swift/]
+
+visual-studio.png
+  [http://iconshow.me/metroui-visualstudio-2012]
+  [http://iconshow.me/media/images/social/flat-style-Metro-UI-Icons/Applications/png/512/MetroUI-VisualStudio-2012.png]
+
+cchar.png
+  [http://devstickers.com/csharp]
+  [http://devstickers.com/assets/img/pro/2p4i.png]
+
+xaml.png
+  [http://frustrateddev.com/learning-xaml-first-steps/]
+  [http://frustrateddev.com/content/images/2015/04/XAML-LOGO.jpg]
+
+app-hibrida.png
+  [http://d13yacurqjgara.cloudfront.net/users/48747/screenshots/1224225/android-devices-dribbble.png]
+  [http://www.yoarts.com/free-psd-mockup-templates-for-website-application-designs/]
+
+navegador.png
+  [http://jarroba.com/cliente-servidor-peticion-del-cliente/]
+  [http://jarroba.com/wp-content/uploads/2015/11/Cliente-Servidor-el-Navegador-como-Cliente-www.Jarroba.com_.png]
+  [https://linxgohost.com/]
+  [https://linxgohost.com/wp-content/uploads/2016/03/server.png]
+  [http://www.blogginred.com/2014/05/donde-subir-o-alojar-archivos-ficheros.html]
+  [http://4.bp.blogspot.com/-FsHVYyoOqa8/U3oN1-om_YI/AAAAAAAAFYg/4E0j947_XuM/s1600/app-x-php-icon.png]
+  [http://freeflaticons.com/gadgets-flat-icons/play-button-flat-icon]
+  [http://freeflaticons.com/wp-content/uploads/2014/09/play-1411556039kg4n8.png]
+
+cordovaapparchitecture.png
+  [https://cordova.apache.org/docs/en/latest/guide/overview/]
+  [https://cordova.apache.org/static/img/guide/cordovaapparchitecture.png]
