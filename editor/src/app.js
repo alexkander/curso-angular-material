@@ -248,6 +248,7 @@ angular.module('app', ['ngMaterial', 'ngSanitize', 'ui.ace'])
 
       $scope.toggleSideBar = function(id){
 
+        $mdSidenav(id == 'misEjemplos'? 'ejemplos' : 'misEjemplos').close();
         $mdSidenav(id).toggle();
 
       };
