@@ -1,0 +1,124 @@
+<section>
+  <h3>Aplicaciones híbridas</h3>
+  <table>
+    <tr>
+      <td class="fragment text-right">
+        <blockquote>
+          <p>
+            Una aplicación desarrollada como una página web que se compila dentro de un marco de aplicación nativa
+          </p>
+        </blockquote>
+      </td>
+      <td width="600" class="relative">
+        <img src="images/app-hibrida1.png" alt="Aplicación híbrida" style="visibility:hidden">
+        <img class="absolute fragment" src="images/app-hibrida1.png" alt="Aplicación híbrida">
+        <img class="absolute fragment" src="images/app-hibrida2.png" alt="Aplicación híbrida">
+        <img class="absolute fragment" src="images/app-hibrida3.png" alt="Aplicación híbrida">
+      </td>
+    </tr>
+    <tr>
+      <td class="text-right fragment">
+        <p>
+          <strong>WebView</strong>
+        </p>
+      </td>
+      <td class="fragment">
+        <blockquote>
+          <p>
+            Componente nativo que interpreta documentos HTML.<br>
+            En otras palabras es un <span class="highlight-blue">pequeño navegador</span>.
+          </p>
+        </blockquote>
+      </td>
+    </tr>
+  </table>
+</section>
+
+<section>
+  <h3>Consideraciones</h3>
+  <ul>
+    <li class="fragment">
+      La aplicación se <strong class="blue">desarrolla</strong> como una página web, pero <strong class="red">no es</strong> una página web.
+    </li>
+    <li class="fragment">
+      Los recursos de HTML deben ser almacenada dentro de la aplicación. Debe evitarse en lo posible utilizar recursos directamente desde Internet.
+    </li>
+    <li class="fragment">
+      El WebView no interpreta lenguaje del servidor (PHP, Ruby, Pyhton, Node.js, etc).
+    </li>
+    <li class="fragment">
+      El dinamismo de la aplicación se trabaja desde JavaScript en el FrontEnd, nunca con leuguaje de servidor.
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h3>Petición HTTP</h3>
+  <div class="relative">
+    <img src="images/navegador1.png" alt="Navegador" style="visibility:hidden">
+    <img class="absolute fragment" src="images/navegador1.png" alt="Navegador">
+    <img class="absolute fragment" src="images/navegador2.png" alt="Navegador">
+    <img class="absolute fragment" src="images/navegador3.png" alt="Navegador">
+    <img class="absolute fragment" src="images/navegador4.png" alt="Navegador">
+    <img class="absolute fragment" src="images/navegador5.png" alt="Navegador">
+    <img class="absolute fragment" src="images/navegador6.png" alt="Navegador">
+    <img class="absolute fragment" src="images/navegador7.png" alt="Navegador">
+  </div>
+</section>
+
+<section>
+  <h3>Funciones Nativas</h3>
+  <table>
+    <tr>
+      <td>
+        <small>
+          <ul>
+            <li class="fragment">Hardware: cámara, vibración, tonos, GPS, acelerómetro, etc</li>
+            <li class="fragment">Servicios: SMS, MMS, Llamadas, etc</li>
+            <li class="fragment">En el desarrollo de páginas web no tienen contempladas estas características</li>
+          </ul>
+        </small>
+      </td>
+      <td width="500">
+        <img class="fragment" src="images/webview-nativo.png" alt="Webview - Nativo">
+      </td>
+    </tr>
+  </table>
+  <div class="fragment">
+    Desarrollar de interfaces de comunicación entre el documento HTML y el código nativo para cada plataforma.
+  </div>
+</section>
+
+<section>
+  <img width="400" src="images/cordova.png" alt="Apache Cordova">
+  <table>
+    <tr>
+      <td class="fragment">
+        <blockquote>
+          <p class="cite">
+            Framework de desarrollo de aplicaciones móviles de código abierto que te permite usar tecnologías web estándares (HTML5, CCS3 y JavaScript) para desarrollos multiplataformas. Las aplicaciones se ejecutan dentro de contenedores específicos para cada plataforma y se basan API estándares compatibles para acceder a las características de cada dispositivo como sensores, datos, red, etc.
+          </p>
+          <footer>
+            <a href="https://cordova.apache.org/docs/en/latest/guide/overview/">Página Apache Cordova (2012)</a>
+          </footer>
+        </blockquote>
+      </td>
+      <td width="400">
+        <div class="fragment">¿Qué significa?</div>
+        <pre class="fragment"><code>// Android
+Camera cam</code></pre>
+<pre class="fragment"><code>// iOS
+AVCaptureDevice *cam</code></pre>
+<pre class="fragment"><code>// Windows Phone
+PhotoCamera cam</code></pre>
+<pre class="fragment"><code>// Cordova JavaScript
+navigator.camera</code></pre>
+      </td>
+    </tr>
+  </table>
+</section>
+
+<section>
+  <div><img width="400" src="images/cordova.png" alt="Apache Cordova"></div>
+  <div><img width="650" src="images/cordovaapparchitecture.png" alt="Arquitectura de Apache Cordova"></div>
+</section>

@@ -1,0 +1,89 @@
+@import nib
+
+$circulo-size = 170px
+$circulo-title-size = 45px
+
+.reveal
+  section
+    .inline-block
+      display: inline-block
+      vertical-align: top
+      
+    .pull-left
+      float: left
+      
+    .pull-right
+      float: right
+    
+    .text-right
+      text-align: right
+      
+    .text-center
+      text-align: center
+    
+    .text-left
+      text-align: left
+    
+    .relative
+      position: relative
+      
+    .absolute
+      absolute top bottom left right
+      
+    .vertical-align
+      display: table
+      >div
+        display: table-cell
+        vertical-align: middle
+        
+    .blue
+      color: blue
+      
+    .red
+      color: red
+      
+    img
+      box-shadow: none
+      background-color: transparent
+      border: none
+      margin: 0
+      
+    table
+      blockquote
+        font-size: 60%
+    td
+      vertical-align: middle
+      border:none
+    blockquote
+      padding: 20px
+      width: auto
+      p
+        margin: 0
+        &.cite
+          &:before
+          &:after
+            content: '"'
+      footer
+        text-align: right
+    
+    .circulo
+      position: relative
+      margin: 10px
+      padding: 10px
+      // box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)
+      border-radius: 50%
+      width: $circulo-size
+      height: $circulo-size
+      h4
+        margin: 0
+        absolute: top left
+        border-radius: 50%
+        width: $circulo-title-size
+        height: $circulo-title-size
+      img
+      span
+        display: block
+        margin: 0 auto
+      span
+        font-size: 16px
+        line-height: 16px

@@ -1,0 +1,98 @@
+.reveal section .inline-block {
+  display: inline-block;
+  vertical-align: top;
+}
+.reveal section .pull-left {
+  float: left;
+}
+.reveal section .pull-right {
+  float: right;
+}
+.reveal section .text-right {
+  text-align: right;
+}
+.reveal section .text-center {
+  text-align: center;
+}
+.reveal section .text-left {
+  text-align: left;
+}
+.reveal section .relative {
+  position: relative;
+}
+.reveal section .absolute {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.reveal section .vertical-align {
+  display: table;
+}
+.reveal section .vertical-align >div {
+  display: table-cell;
+  vertical-align: middle;
+}
+.reveal section .blue {
+  color: #00f;
+}
+.reveal section .red {
+  color: #f00;
+}
+.reveal section img {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  background-color: transparent;
+  border: none;
+  margin: 0;
+}
+.reveal section table blockquote {
+  font-size: 60%;
+}
+.reveal section td {
+  vertical-align: middle;
+  border: none;
+}
+.reveal section blockquote {
+  padding: 20px;
+  width: auto;
+}
+.reveal section blockquote p {
+  margin: 0;
+}
+.reveal section blockquote p.cite:before,
+.reveal section blockquote p.cite:after {
+  content: '"';
+}
+.reveal section blockquote footer {
+  text-align: right;
+}
+.reveal section .circulo {
+  position: relative;
+  margin: 10px;
+  padding: 10px;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  width: 170px;
+  height: 170px;
+}
+.reveal section .circulo h4 {
+  margin: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+}
+.reveal section .circulo img,
+.reveal section .circulo span {
+  display: block;
+  margin: 0 auto;
+}
+.reveal section .circulo span {
+  font-size: 16px;
+  line-height: 16px;
+}
