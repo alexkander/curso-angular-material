@@ -49,6 +49,8 @@
         <?php include 'views/introduccion.html' ?>
         <?php include 'views/computacion-movil.html' ?>
         <?php include 'views/apps-hibridas.html' ?>
+        <?php include 'views/html-css-js.html' ?>
+        <?php include 'views/final.html' ?>
 
       </div>
 

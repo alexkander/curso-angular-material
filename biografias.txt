@@ -42,8 +42,9 @@ Imágenes
 Gran parte de las imágenes fueron editadas para esta presentación
 --------------------------------------------------------------------------------
 angularjs.png
-  [http://lawsonry.com/2014/05/diy-angularjs-seo-with-phantomjs-the-easy-way/]
-  [http://pascalprecht.github.io/slides/angularjs-insights/img/angularjs-logo.png]
+angularjs-logo.png
+  [https://commons.wikimedia.org/wiki/File:AngularJS_logo.svg]
+  [https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/AngularJS_logo.svg/2000px-AngularJS_logo.svg.png]
 
 angular-material-logo.png
 angular-material-logo-no-name.png
@@ -57,6 +58,10 @@ computador.png
 cordova.png
   [https://www.otreva.com/web-development/mobile-application-development-cordova/]
   [https://s3.amazonaws.com/otreva-cdn-3/wp-content/uploads/2014/11/cordova-logo.png]
+  
+cordova-logo.png
+  [https://cordova.apache.org/]
+  [https://cordova.apache.org/static/img/cordova_bot.png]
 
 hardware.png
   [http://www.123rf.com/photo_42770112_stock-vector-computer-hardware-flat-illustration-concepts-and-flat-icons-set.html]
@@ -143,6 +148,7 @@ bb-os.png
   [http://techspective.net/wp-content/uploads/2015/09/bblogo.png]
 
 android-studio.png
+android-studio-logo.png
   [http://www.elkady.xyz/blog/]
   [http://www.elkady.xyz/assets/images/android-studio-logo.png]
 
@@ -191,3 +197,41 @@ navegador.png
 cordovaapparchitecture.png
   [https://cordova.apache.org/docs/en/latest/guide/overview/]
   [https://cordova.apache.org/static/img/guide/cordovaapparchitecture.png]
+
+html5.png
+  [https://commons.wikimedia.org/wiki/File:HTML5_logo_and_wordmark.svg]
+  [https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/500px-HTML5_logo_and_wordmark.svg.png]
+
+css3.png
+  [http://www.logotypes101.com/logo/css3]
+  [http://www.logotypes101.com/free_vector_logo_png/93480/830812341256B99B32E1A9F242BB9F5F/CSS3]
+
+js.png
+  [https://commons.wikimedia.org/wiki/File:Badge_js-strict.svg]
+  [https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Badge_js-strict.svg/2000px-Badge_js-strict.svg.png]
+
+code.png
+  [https://design.google.com/icons/]
+
+wampserver.png
+  [http://www.orifichu.com/articulos/iniciar-los-servicios-de-wampserver-automaticamente]
+  [http://www.orifichu.com/wp-content/uploads/2012/04/WampServer.png]
+
+googlechromepng
+  [https://play.google.com/store/apps/details?id=com.android.chrome&hl=es_419]
+  [https://lh3.ggpht.com/O0aW5qsyCkR2i7Bu-jUU1b5BWA_NygJ6ui4MgaAvL7gfqvVWqkOBscDaq4pn-vkwByUx=w300]
+
+nodejs.png
+  [https://worldvectorlogo.com/logo/nodejs-icon]
+  [https://worldvectorlogo.com/logos/nodejs-icon.svg]
+
+notepadpp.png
+  [http://www.reviversoft.com/blog/2013/04/text-editin-showdown/]
+  [http://www.reviversoft.com/blog/wp-content/uploads/2013/04/Notepadplusplus.png]
+
+sublimetext.png
+  [https://packagecontrol.io/packages/Theme%20-%20Minimal]
+  [https://packagecontrol.io/readmes/img/cf1226fe0bdf5490e8ec2e05ff4675307ba4c6dc.png]
+
+codifiquemos.gif
+  [http://i.giphy.com/90F8aUepslB84.gif]

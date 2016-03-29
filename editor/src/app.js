@@ -33,12 +33,15 @@ angular.module('app', ['ngMaterial', 'ngSanitize', 'ui.ace'])
       storageService.setKey('codedit.');
     }])
 
-  .controller('GlobalCtrl', ['$scope', '$q', '$http', '$mdSidenav', '$mdDialog', '$timeout', 'serverService', 'storageService',
-    function($scope, $q, $http, $mdSidenav, $mdDialog, $timeout, serverService, storageService){
+  .constant('LOCAL', location.hostname == 'localhost')
+
+  .controller('GlobalCtrl', ['$scope', '$q', '$http', '$mdSidenav', '$mdDialog', '$timeout', 'serverService', 'storageService', 'LOCAL',
+    function($scope, $q, $http, $mdSidenav, $mdDialog, $timeout, serverService, storageService, LOCAL){
 
       var defCode = { css: '', js: '', html: '', };
       var mySamples = storageService.config('samples');
 
+      $scope.isLocal = LOCAL;
       $scope.selected = {};
       $scope.samples = {};
       $scope.mySamples = {};
