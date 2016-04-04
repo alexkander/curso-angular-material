@@ -235,3 +235,6 @@ sublimetext.png
 
 codifiquemos.gif
   [http://i.giphy.com/90F8aUepslB84.gif]
+  
+html-struct.png
+  [http://www.w3schools.com/html/html_intro.asp]

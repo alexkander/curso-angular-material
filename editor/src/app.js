@@ -15,6 +15,8 @@ angular.module('app', ['ngMaterial', 'ngSanitize', 'ui.ace'])
         .icon('play', './images/svg/play.svg', 48)
         .icon('settings', './images/svg/settings.svg', 48)
         .icon('code', './images/svg/code.svg', 48)
+        .icon('cloud', './images/svg/cloud.svg', 48)
+        .icon('home', './images/svg/home.svg', 48)
         .icon('delete', './images/svg/delete.svg', 48)
         .icon('up', './images/svg/up.svg', 48)
         .icon('down', './images/svg/down.svg', 48)
@@ -78,19 +80,31 @@ angular.module('app', ['ngMaterial', 'ngSanitize', 'ui.ace'])
         if(!$scope.selected.scripts)
           $scope.selected.scripts = {};
 
-        var promises = [];
+        if(isRemote($scope.selected)){
 
-        angular.forEach($scope.code, function(value, key){
-          if(sample[key])
-            promises.push($http.get(sample[key]).then(
-              function(response){ $scope.code[key] = response.data;},
-              function(){ $scope.code[key] = ''; }
-            ));
-        });
+          var promises = [];
 
-        $q.all(promises).then(function(){
+          angular.forEach($scope.code, function(value, key){
+            if(sample[key])
+              promises.push($http.get(sample[key]).then(
+                function(response){ $scope.code[key] = response.data;},
+                function(){ $scope.code[key] = ''; }
+              ));
+          });
+
+          $q.all(promises).then(function(){
+            $scope.play();
+          });
+
+        }else{
+
+          angular.forEach($scope.code, function(value, key){
+            $scope.code[key] = storageService.get('sample-'+$scope.selected.id+'.html', '');
+          });
+
           $scope.play();
-        });
+
+        }
 
       };
 
@@ -181,12 +195,13 @@ angular.module('app', ['ngMaterial', 'ngSanitize', 'ui.ace'])
 
         $scope.resultHtml = '';
         $timeout(function(){
-          $scope.resultHtml = angular.element('<div/>').append(html).html();
+          $scope.resultHtml = angular.element('<div/>').append(html).html()+"\n";
         }, 100);
 
       };
 
-      $scope.settings = function(ev){
+      $scope.settings = function(record, ev){
+        $scope.selectSample(record);
         $scope.record = angular.extend({}, $scope.selected);
         $mdDialog.show({
           parent: angular.element(document.body),
@@ -251,14 +266,13 @@ angular.module('app', ['ngMaterial', 'ngSanitize', 'ui.ace'])
 
       $scope.toggleSideBar = function(id){
 
-        $mdSidenav(id == 'misEjemplos'? 'ejemplos' : 'misEjemplos').close();
         $mdSidenav(id).toggle();
 
       };
 
       $scope.aceOptions = function(mode){
         return {
-          mode: mode,
+          // mode: mode,
           useWrapMode:true,
           onLoad: function(_editor){
             _editor.setOptions({

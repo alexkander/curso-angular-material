@@ -45,47 +45,16 @@
           <md-button ng-click="upload()" aria-label="Guardar project" class="md-icon-button" ng-if="isLocal">
             <md-icon md-svg-icon="backup"></md-icon>
           </md-button>
-          <md-button ng-click="settings($event)" aria-label="Settings" class="md-icon-button">
-            <md-icon md-svg-icon="settings"></md-icon>
-          </md-button>
           <md-button ng-click="play()" aria-label="Ejecutar" class="md-icon-button">
             <md-icon md-svg-icon="play"></md-icon>
           </md-button>
-          <md-button ng-click="toggleSideBar('ejemplos')" aria-label="Mostrar proyectos">
+          <!-- <md-button ng-click="toggleSideBar('ejemplos')" aria-label="Mostrar proyectos">
             Ejemplos
-          </md-button>
-          <md-button ng-click="toggleSideBar('misEjemplos')" aria-label="Mostrar proyectos">
-            Mis ejemplos
-          </md-button>
+          </md-button> -->
         </div>
       </md-toolbar>
 
       <md-content flex layout="row" class="md-primary">
-
-        <md-sidenav class="md-sidenav-right"
-          md-component-id="misEjemplos"
-          ng-click="toggleSideBar('misEjemplos')" aria-label="Ver mis ejemplos"
-          md-disable-backdrop
-          md-is-locked-open2="true"
-          md-whiteframe="4"
-          layout="column">
-          
-          <md-toolbar flex layout="column">
-            <md-content flex>
-              <md-list>
-                <md-list-item ng-repeat="p in mySamples" ng-click="selectSample(p)" ng-class="{'selected' : p === selected}">
-                  <md-icon md-svg-icon="{{p === selected? 'selected' : 'code'}}" class="md-avatar"></md-icon>
-                  <p>{{p.name}}</p>
-                  <md-button ng-click="delete(p, $event)" aria-label="Eliminar proyecto" class="md-icon-button md-warn md-hue-1">
-                    <md-icon md-svg-icon="delete"></md-icon>
-                  </md-button>
-                </md-list-item>
-              </md-list>
-            </md-content>
-
-          </md-toolbar>
-
-        </md-sidenav>
 
         <md-content flex layout-gt-xs="column" class="content">
           <div flex class="relative">
@@ -145,11 +114,11 @@
           </div>
         </md-content>
 
-        <md-sidenav class="md-sidenav-right"
+        <md-sidenav
           md-component-id="ejemplos"
           ng-click="toggleSideBar('ejemplos')" aria-label="Ver ejemplos"
           md-disable-backdrop
-          md-is-locked-open2="true"
+          md-is-locked-open="true"
           md-whiteframe="4"
           layout="column">
           
@@ -157,8 +126,21 @@
             <md-content flex>
               <md-list>
                 <md-list-item ng-repeat="p in samples.data" ng-click="selectSample(p)" ng-class="{'selected' : p === selected}">
-                  <md-icon md-svg-icon="{{p === selected? 'selected' : 'code'}}" class="md-avatar"></md-icon>
+                  <md-icon md-svg-icon="cloud" class="md-avatar"></md-icon>
                   <p>{{p.name}}</p>
+                  <md-button ng-if="isLocal" ng-click="settings(p, $event)" aria-label="Editar proyecto" class="md-icon-button md-hue-1">
+                    <md-icon md-svg-icon="settings"></md-icon>
+                  </md-button>
+                  <md-button ng-if="isLocal" ng-click="delete(p, $event)" aria-label="Eliminar proyecto" class="md-icon-button md-warn md-hue-1">
+                    <md-icon md-svg-icon="delete"></md-icon>
+                  </md-button>
+                </md-list-item>
+                <md-list-item ng-repeat="p in mySamples" ng-click="selectSample(p)" ng-class="{'selected' : p === selected}">
+                  <md-icon md-svg-icon="home" class="md-avatar"></md-icon>
+                  <p>{{p.name}}</p>
+                  <md-button ng-click="settings(p, $event)" aria-label="Editar proyecto" class="md-icon-button md-hue-1">
+                    <md-icon md-svg-icon="settings"></md-icon>
+                  </md-button>
                   <md-button ng-click="delete(p, $event)" aria-label="Eliminar proyecto" class="md-icon-button md-warn md-hue-1">
                     <md-icon md-svg-icon="delete"></md-icon>
                   </md-button>
@@ -175,9 +157,6 @@
     </div>
     
     <script src="vendor/ace/ace.js"></script>
-    <script src="vendor/ace/mode-css.js"></script>
-    <script src="vendor/ace/mode-html.js"></script>
-    <script src="vendor/ace/mode-javascript.js"></script>
 
     <script src="vendor/angular.min.js"></script>
     <script src="vendor/angular-animate.min.js"></script>

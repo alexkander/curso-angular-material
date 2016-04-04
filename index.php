@@ -51,6 +51,7 @@
         <?php include 'views/apps-hibridas.html' ?>
         <?php include 'views/html-css-js.html' ?>
         <?php include 'views/final.html' ?>
+        <?php include 'views/html.html' ?>
 
       </div>
 
