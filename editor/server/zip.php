@@ -63,7 +63,7 @@ $files = amGlobFiles(array(
 $zip = new ZipArchive();  // Instanciar comprimido
 
 do{
-  $zipfilePath = dirname(__FILE__).'/../../storage/dwn-'.date('YmdHis').".zip";
+  $zipfilePath = dirname(__FILE__).'/../../storage/sirideas-editor-'.date('YmdHis').".zip";
 }while(file_exists($zipfilePath));
 
 // Crear el directorio destino si no existe
