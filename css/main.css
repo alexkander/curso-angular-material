@@ -46,6 +46,9 @@
 .reveal section .green {
   color: #0f0;
 }
+.reveal section .yellow {
+  color: #ff0;
+}
 .reveal section img {
   -webkit-box-shadow: none;
   box-shadow: none;

@@ -43,6 +43,7 @@ angular.module('app', ['ngMaterial', 'ngSanitize', 'ui.ace'])
 
       var defCode = { css: '', js: '', html: '', };
       var mySamples = storageService.config('samples');
+      var count = 0;
 
       $scope.isLocal = LOCAL;
       $scope.selected = {};
@@ -87,10 +88,11 @@ angular.module('app', ['ngMaterial', 'ngSanitize', 'ui.ace'])
 
           angular.forEach($scope.code, function(value, key){
             if(sample[key])
-              promises.push($http.get(sample[key]).then(
+              promises.push($http.get(sample[key]+'?'+count).then(
                 function(response){ $scope.code[key] = response.data;},
                 function(){ $scope.code[key] = ''; }
               ));
+              count++;
           });
 
           $q.all(promises).then(function(){
@@ -100,7 +102,7 @@ angular.module('app', ['ngMaterial', 'ngSanitize', 'ui.ace'])
         }else{
 
           angular.forEach($scope.code, function(value, key){
-            $scope.code[key] = storageService.get('sample-'+$scope.selected.id+'.html', '');
+            $scope.code[key] = storageService.get('sample-'+$scope.selected.id+'.'+key, '');
           });
 
           $scope.play();
