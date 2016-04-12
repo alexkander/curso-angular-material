@@ -1,8 +1,8 @@
 <?php
 
-require_once 'global.php';
+require_once dirname(__FILE__).'/private/global.php';
 
-response(true, array(
+response(array(
   'links' => array(
     'angular-material.min.css' => array(
       'rel' => 'stylesheet',

@@ -12,10 +12,16 @@
     <md-dialog-content>
       <div class="md-dialog-content">
         <div layout="column">
-          <md-input-container class="md-block">
-            <label>Nombre</label>
-            <input required md-no-asterisk name="name" ng-model="record.name">
-          </md-input-container>
+          <div flex layout="row">
+            <md-input-container flex class="md-block">
+              <label>Nombre</label>
+              <input required md-no-asterisk name="name" ng-model="record.name">
+            </md-input-container>
+            <md-input-container flex class="md-block">
+              <label>Tipo</label>
+              <input required md-no-asterisk name="type" ng-model="record.type">
+            </md-input-container>
+          </div>
           <div flex layout="row">
             <fieldset flex class="standard" >
               <legend>CSS</legend>
@@ -47,7 +53,7 @@
       <md-button ng-click="cancelModal()" aria-label="Cerrar" class="md-warn">
         Cancelar
       </md-button>
-      <md-button ng-click="save()" class="md-primary">
+      <md-button ng-click="m.save()" class="md-primary">
         Guardar
       </md-button>
     </md-dialog-actions>

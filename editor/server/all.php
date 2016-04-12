@@ -1,6 +1,5 @@
 <?php
 
-require_once 'global.php';
+require_once dirname(__FILE__).'/private/global.php';
 
-$projects = new Table(JSON_PROJECTS);
-response(true, $projects->all());
+response(Project::all());
