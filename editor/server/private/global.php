@@ -24,14 +24,14 @@ function response($success, $data = null){
   if($success === false){
     $response['success'] = false;
     if(isset($data)){
-      $response['data'] = $data;
+      $response['ddd'] = $data;
     }
   }else{
     $response['success'] = true;
     if(isset($data)){
-      $response['data'] = $data;
+      $response['ddd'] = $data;
     }else if($success !== true){
-      $response['data'] = $success;
+      $response['ddd'] = $success;
     }
   }
   
@@ -155,8 +155,9 @@ class Table{
 
   public function save(){
 
-    unset($this->data['records']);
-    file_put_contents($this->file, json_encode($this->data));
+    $data = $this->data;
+    unset($data['records']);
+    file_put_contents($this->file, json_encode($data));
 
   }
 
@@ -212,7 +213,7 @@ class Project{
   protected static $data = null;
   protected $id = null;
   public $name = null;
-  public $type = null;
+  public $type = '';
 
   public function __construct($id){
 
@@ -386,20 +387,29 @@ class Project{
 
   public static function all(){
 
+    $groups = array();
+
+    $fn = function($item, &$key) use(&$groups){
+
+      $key = intval(basename($item));
+      $p = new Project($key);
+
+      if(!isset($groups[$p->type]))
+        $groups[$p->type] = array();
+
+      $groups[$p->type][] = $p->id;
+
+      return $p->arr();
+
+    };
+
     $ret = amGlobFiles(PROJECTS_DIR, [
       'dirs' => true,
       'files' => false,
       'recursive' => false,
-      'callback' => function($item, &$key){
+      'callback' => $fn]);
 
-        $key = intval(basename($item));
-        $p = new Project($key);
-
-        return $p->arr();
-
-      }]);
-
-    return $ret;
+    return array('groups' => $groups, 'records' => $ret);
 
   }
 

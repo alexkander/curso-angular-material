@@ -56,13 +56,21 @@
           
           <md-toolbar flex layout="column">
             <md-content flex>
-              <md-list>
-                <md-list-item ng-repeat="p in samples.data" ng-click="m.select(p)" ng-class="{'selected' : p === selected}">
-                  <p>{{p.name}}</p>
-                  <md-button ng-if="isLocal" ng-click="delete(p, $event)" aria-label="Eliminar proyecto" class="md-icon-button md-warn md-hue-1">
-                    <md-icon md-svg-icon="delete"></md-icon>
-                  </md-button>
-                </md-list-item>
+              <md-list ng-repeat="(group, ids) in samples.ddd.groups" ng-if="ids.length">
+                <md-subheader class="md-no-sticky" ng-click="toggleGroup(group)">
+                  <div layout="row">
+                    <div>{{group | groupText}}</div>
+                    <span flex></span>
+                  </div>
+                </md-subheader>
+                <md-content ng-hide="ghiddens[group]">
+                  <md-list-item ng-init="p = samples.ddd.records[id]" ng-repeat="id in ids" ng-click="m.select(p)" ng-class="{'selected' : p === selected}">
+                    <p>{{p.name}}</p>
+                    <md-button ng-if="isLocal" ng-click="delete(p, $event)" aria-label="Eliminar proyecto" class="md-icon-button md-warn md-hue-1">
+                      <md-icon md-svg-icon="delete"></md-icon>
+                    </md-button>
+                  </md-list-item>
+                </md-content>
               </md-list>
             </md-content>
 
