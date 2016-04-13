@@ -242,3 +242,7 @@ html-struct.png
 html-layout.gif
   [http://www.w3schools.com/html/html_layout.asp]
   [http://www.w3schools.com/html/img_sem_elements.gif]
+
+css-selector.gif
+  [http://www.w3schools.com/css/css_syntax.asp]
+  [http://www.w3schools.com/css/selector.gif]

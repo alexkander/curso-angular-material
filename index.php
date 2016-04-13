@@ -52,6 +52,7 @@
         <?php include 'views/html-css-js.html' ?>
         <?php include 'views/final.html' ?>
         <?php include 'views/html.html' ?>
+        <?php include 'views/css.html' ?>
 
       </div>
 
