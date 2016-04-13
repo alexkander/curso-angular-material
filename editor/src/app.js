@@ -32,15 +32,10 @@ angular.module('app', ['ngMaterial', 'ngSanitize', 'ui.ace'])
 
     }])
 
-  .run(['storageService',
-    function(storageService){
-      storageService.setKey('codedit.');
-    }])
-
   .constant('LOCAL', location.hostname == 'localhost')
 
-  .controller('GlobalCtrl', ['$scope', '$q', '$http', '$mdSidenav', '$mdDialog', '$timeout', 'serverService', 'storageService', 'LOCAL',
-    function($scope, $q, $http, $mdSidenav, $mdDialog, $timeout, serverService, storageService, LOCAL){
+  .controller('GlobalCtrl', ['$scope', '$q', '$http', '$mdSidenav', '$mdDialog', '$timeout', 'serverService', 'LOCAL',
+    function($scope, $q, $http, $mdSidenav, $mdDialog, $timeout, serverService, LOCAL){
 
       var count = 0;
 
@@ -52,6 +47,13 @@ angular.module('app', ['ngMaterial', 'ngSanitize', 'ui.ace'])
       $scope.resultUrl = null;
       $scope.resultHtml = null;
       $scope.codes = {};
+      $scope.ghiddens = {};
+
+      $scope.toggleGroup = function(group){
+
+        $scope.ghiddens[group] = !$scope.ghiddens[group];
+
+      };
 
       $scope.toggleSideBar = function(id){
 
@@ -154,7 +156,6 @@ angular.module('app', ['ngMaterial', 'ngSanitize', 'ui.ace'])
 
         save: function(){
 
-          console.log($scope.record)
           if(!$scope.record)
             $scope.record = angular.extend({}, $scope.selected);
           
@@ -164,11 +165,42 @@ angular.module('app', ['ngMaterial', 'ngSanitize', 'ui.ace'])
           };
 
           serverService.save(data).then(function(response){
-            if(response.data.success){
-              $scope.record = null;
-              server.select($scope.samples.data[response.data.data.id]);
-              $mdDialog.hide();
-            }
+            (function(ddd){
+
+              if(response.data.success){
+
+                $scope.record = null;
+                var record = response.data.ddd;
+                var id = record.id;
+                var oldRecord = ddd.records[id] || {};
+                var oldGroup = ddd.groups[oldRecord.type];
+
+                if(record.type != oldRecord.type){
+
+                  if(!ddd.groups[record.type])
+                    ddd.groups[record.type] = [];
+
+                  ddd.groups[record.type].push(id);
+
+                  if(oldGroup){
+                    var index = oldGroup.indexOf(id);
+                    if(index>=0)
+                      oldGroup.splice(index, 1);
+                  }
+
+
+                }
+
+                var newRecord = angular.extend(oldRecord || {}, record);
+
+                ddd.records[id] = newRecord;
+
+                server.select(newRecord);
+                $mdDialog.hide();
+
+              }
+
+            })($scope.samples.ddd);
           });
 
         },
@@ -178,7 +210,16 @@ angular.module('app', ['ngMaterial', 'ngSanitize', 'ui.ace'])
           var id = record.id;
           serverService.remove(id).then(function(response){
             if(response.data.success){
-              delete $scope.samples.data[id];
+
+              var group = $scope.samples.ddd.groups[record.type];
+              
+              if(group){
+                var index = group.indexOf(record.id);
+                if(index>=0)
+                  group.splice(index, 1);
+              }
+
+              delete $scope.samples.ddd.records[id];
             }
           });
 
@@ -194,13 +235,17 @@ angular.module('app', ['ngMaterial', 'ngSanitize', 'ui.ace'])
 
           $scope.samples = serverService.all();
           $scope.samples.then(function(response){
-            (function(list){
+            (function(ddd){
 
-              var ids = Object.keys(list);
+              var ids = Object.keys(ddd.records);
               if(ids.length>0)
-                server.select(list[ids[0]]);
+                server.select(ddd.records[ids[0]]);
+
+              $scope.ghiddens = angular.extend({}, ddd.groups);
+
+              $scope.toggleGroup(Object.keys(ddd.groups).pop());
               
-            })(response.data.data);
+            })(response.data.ddd);
           });
 
         }
@@ -213,161 +258,7 @@ angular.module('app', ['ngMaterial', 'ngSanitize', 'ui.ace'])
 
       $scope.m.load();
 
-      /*
-        var isRemote = function(record){
-          return $scope.samples.data[record.id] == record;
-        };
-
-        var localId = function(){
-          
-          var id = storageService.get('sample.id', 1);
-          storageService.set('sample.id', id+1);
-
-          if(mySamples.get(id, false))
-            return localId();
-
-          return id;
-
-        };
-
-        $scope.selectSample = function(sample){
-
-          $scope.selected = sample;
-
-          if(!$scope.selected.links)
-            $scope.selected.links = {};
-
-          if(!$scope.selected.scripts)
-            $scope.selected.scripts = {};
-
-          if(isRemote($scope.selected)){
-
-          }else{
-
-            angular.forEach($scope.code, function(value, key){
-              $scope.code[key] = storageService.get('sample-'+$scope.selected.id+'.'+key, '');
-            });
-
-            $scope.play();
-
-          }
-
-        };
-        
-        $scope.update = function(){
-
-          if(!$scope.record)
-            $scope.record = angular.extend({}, $scope.selected);
-          
-          var id;
-          if(isRemote($scope.selected) || !$scope.selected.id)
-            id = localId();
-          else
-            id = $scope.selected.id;
-
-          if(($scope.record.name || '').trim() == '')
-            $scope.record.name = 'project-' + id;
-
-          $scope.record.id = id;
-
-          mySamples.set(id, $scope.record);
-          $scope.mySamples[id] = $scope.record;
-
-          storageService.set('sample-'+id+'.html', $scope.code.html);
-          storageService.set('sample-'+id+'.css', $scope.code.css);
-          storageService.set('sample-'+id+'.js', $scope.code.js);
-          
-          $scope.record = null;
-          $scope.selectSample($scope.mySamples[id]);
-          $mdDialog.hide();
-
-        };
-
-        $scope.play = function(){
-
-          var strHtml,
-            html = angular.element('<html/>'),
-            head = angular.element('<head/>'),
-            body = angular.element('<body/>').html($scope.code.html),
-            css = angular.element('<style/>').html($scope.code.css),
-            js = angular.element('<script/>').html($scope.code.js);
-
-          angular.forEach($scope.selected.links, function(attrs, key){
-            head.append(angular.element('<link/>').attr(attrs));
-          });
-
-          angular.forEach($scope.selected.scripts, function(attrs, key){
-            body.append(angular.element('<script/>').attr(attrs));
-          });
-
-          html.append(head.append(css)).append(body.append(js))
-
-          $scope.resultHtml = '';
-          $timeout(function(){
-            $scope.resultHtml = angular.element('<div/>').append(html).html()+"\n";
-          }, 100);
-
-        };
-
-        $scope.toggle = function (key, list, item) {
-          if(!list[key])
-            list[key] = item;
-          else
-            delete list[key];
-        };
-
-        $scope.exists = function (item, list) {
-
-          return !!list[item];
-
-        };
-
-      
-      */
-
     }])
-
-  .service('storageService', [function() {
-    var appKey = null;
-    var service = {
-      setKey: function(newAppKey) {
-        return appKey = newAppKey;
-      },
-      get: function(key, def) {
-        var value = localStorage.getItem(appKey + key);
-        return value? JSON.parse(value) : def;
-      },
-      set: function(key, value) {
-        return localStorage.setItem(appKey + key, JSON.stringify(value));
-      },
-      remove: function(key) {
-        return localStorage.removeItem(appKey + key);
-      },
-      config: function(globalKey){
-        return {
-          all: function(){
-            return service.get(globalKey) || {};
-          },
-          get: function(key, def){
-            return this.all()[key] || def;
-          },
-          set: function(key, valor){
-            var data = this.all();
-            data[key] = valor;
-            return service.set(globalKey, data);
-          },
-          remove: function(key){
-            var data = this.all();
-            delete data[key];
-            return service.set(globalKey, data);
-          }
-        };
-      },
-    };
-
-    return service;
-
-  }])
 
   .service('serverService', ['$q', '$http', function($q, $http){
 
@@ -375,7 +266,7 @@ angular.module('app', ['ngMaterial', 'ngSanitize', 'ui.ace'])
       var request = $http.get(url)
       request.then(function(response){
         if(response.data.success){
-          request.data = angular.extend({}, response.data.data);
+          request.ddd = angular.extend({}, response.data.ddd);
         }
       });
       return request;
@@ -386,16 +277,7 @@ angular.module('app', ['ngMaterial', 'ngSanitize', 'ui.ace'])
     return {
       save: function(data){
 
-        var request = $http.post('server/save.php', 'data=' + encodeURIComponent(JSON.stringify(data)));
-
-        request.then(function(response){
-          if(response.data.success){
-            var record = response.data.data;
-            all.data[record.id] = angular.extend(all.data[record.id] || {}, record);
-          }
-        });
-
-        return request;
+        return $http.post('server/save.php', 'data=' + encodeURIComponent(JSON.stringify(data)));;
 
       },
       remove: function(id){
@@ -426,5 +308,12 @@ angular.module('app', ['ngMaterial', 'ngSanitize', 'ui.ace'])
   .filter('empty', [function() {
     return function(text) {
       return (text || '').trim() == '';
+    };
+  }])
+
+  .filter('groupText', [function() {
+    return function(text) {
+      text = text || '';
+      return text.trim() == ''? '[No especificado]' : text.toUpperCase();
     };
   }]);

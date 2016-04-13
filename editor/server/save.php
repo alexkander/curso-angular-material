@@ -14,6 +14,9 @@ $p = new Project(@$data['record']['id']);
 $p->name = @$data['record']['name'];
 $p->type = @$data['record']['type'];
 
+if(!isset($p->type))
+  $p->type = '';
+
 $p->save($data['codes']);
 
 response($p->arr());
