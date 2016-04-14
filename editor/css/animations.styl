@@ -1,0 +1,31 @@
+@import nib
+
+
+/*****************************************************************
+Expand
+*****************************************************************/
+.in-expand
+  
+  &.ng-hide-add,
+  &.ng-hide-remove,
+  &.ng-enter,
+  &.ng-leave
+    display: block !important;
+    transition: all 0.4s;
+    transform-origin: top;
+    
+  &.ng-enter,
+  &.ng-hide-remove
+    transform: scale3d(1,0,1);
+    
+  &.ng-enter.ng-enter-active,
+  &.ng-hide-remove.ng-hide-remove-active
+    transform: scale3d(1,1,1);
+    
+  &.ng-leave,
+  &.ng-hide-add
+    transform: scale3d(1,1,1);
+    
+  &.ng-leave.ng-leave-active,
+  &.ng-hide-add.ng-hide-add-active
+    transform: scale3d(1,0,1);

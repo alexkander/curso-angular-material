@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="vendor/roboto.css"/>
     <link rel="stylesheet" href="vendor/angular-material.min.css"/>
     <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="css/animations.css"/>
 
     <style type="text/css">
         /**
@@ -28,42 +29,35 @@
 
   <body ng-app="app" layout="row" ng-cloak>
 
-    <div flex layout="column" tabIndex="-1" role="main" ng-controller="GlobalCtrl">
+    <md-content ng-controller="GlobalCtrl" flex layout="row" class="md-primary" tabIndex="-1" role="main" >
 
-      <md-toolbar id="main-toolbar" layout="row" class="md-whiteframe-z1">
-        <div class="md-toolbar-tools">
-          <h3>Codedit</h3>
-          <span flex></span>
-          <md-button ng-click="add()" aria-label="Nuevo" class="md-icon-button" ng-show="isLocal">
-            <md-icon md-svg-icon="add"></md-icon>
-          </md-button>
-          <md-button href="server/zip.php" aria-label="Descargar" class="md-icon-button">
-            <md-icon md-svg-icon="download"></md-icon>
-          </md-button>
-        </div>
-      </md-toolbar>
+      <md-sidenav layout="column"
+        id="list-ejemplos"
+        md-component-id="ejemplos"
+        ng-click="toggleSideBar('ejemplos')" aria-label="Ver ejemplos"
+        md-disable-backdrop
+        md-is-locked-open="true">
 
-      <md-content flex layout="row" class="md-primary">
-
-        <md-sidenav
-          id="list-ejemplos"
-          md-component-id="ejemplos"
-          ng-click="toggleSideBar('ejemplos')" aria-label="Ver ejemplos"
-          md-disable-backdrop
-          md-is-locked-open="true"
-          md-whiteframe="4"
-          layout="column">
-          
-          <md-toolbar flex layout="column">
-            <md-content flex>
-              <md-list ng-repeat="(group, ids) in samples.ddd.groups" ng-if="ids.length">
-                <md-subheader class="md-no-sticky" ng-click="toggleGroup(group)">
-                  <div layout="row">
-                    <div>{{group | groupText}}</div>
-                    <span flex></span>
-                  </div>
-                </md-subheader>
-                <md-content ng-hide="ghiddens[group]">
+        <md-toolbar id="main-toolbar" layout="row" class="bbottom">
+          <div class="md-toolbar-tools">
+            <h3>Codedit</h3>
+            <span flex></span>
+            <md-button href="server/zip.php" aria-label="Descargar" class="md-icon-button">
+              <md-icon md-svg-icon="download"></md-icon>
+            </md-button>
+          </div>
+        </md-toolbar>
+        
+        <md-toolbar flex layout="column">
+          <md-content flex>
+            <div ng-repeat="(group, ids) in samples.ddd.groups" ng-if="ids.length">
+              <md-toolbar ng-click="toggleGroup(group)" class="md-hue-2 bbottom">
+                <div class="md-toolbar-tools">
+                  {{group | groupText}}
+                </div>
+              </md-toolbar>
+              <md-list class="in-expand" ng-hide="ghiddens[group]">
+                <md-content>
                   <md-list-item ng-init="p = samples.ddd.records[id]" ng-repeat="id in ids" ng-click="m.select(p)" ng-class="{'selected' : p === selected}">
                     <p>{{p.name}}</p>
                     <md-button ng-if="isLocal" ng-click="delete(p, $event)" aria-label="Eliminar proyecto" class="md-icon-button md-warn md-hue-1">
@@ -72,113 +66,54 @@
                   </md-list-item>
                 </md-content>
               </md-list>
-            </md-content>
-
-          </md-toolbar>
-
-        </md-sidenav>
-
-        <md-content id="main-section" flex layout-gt-xs="row" class="content">
-          
-          <md-content flex id="main-files" layout="column" md-whiteframe="4">
-            <md-toolbar md-whiteframe="4">
-              <div class="md-toolbar-tools">
-                <h3>{{selected.name}}</h3>
-                <span flex></span>
-                <md-button ng-click="setup($event)" aria-label="Editar" class="md-icon-button md-hue-1">
-                  <md-icon md-svg-icon="settings"></md-icon>
-                </md-button>
-                <md-button ng-click="m.save()" aria-label="Guardar" class="md-icon-button">
-                  <md-icon md-svg-icon="save"></md-icon>
-                </md-button>
-                <md-button ng-click="m.play()" aria-label="Ejecutar" class="md-icon-button">
-                  <md-icon md-svg-icon="play"></md-icon>
-                </md-button>
-              </div>
-            </md-toolbar>
-            <md-content flex layout="column">
-              <md-tabs flex layout="column" class="md-primary" md-whiteframe="4">
-                <md-tab flex ng-repeat="(url, code) in codes">
-                  <md-tab-label>{{url}}</md-tab-label>
-                  <md-tab-body flex layout="column">
-                    <md-content ng-model="code.code" ui-ace="aceOptions(code.type)"></md-content>
-                  </md-tab-body>
-                </md-tab>
-              </md-tabs>
-            </md-content>
-          </md-content>
-
-          <md-content flex layout="column">
-            <md-toolbar md-whiteframe="4">
-              <div class="md-toolbar-tools">
-                <h3>Preview</h3>
-              </div>
-            </md-toolbar>
-            <md-content flex layout="column">
-              <!-- <iframe flex srcdoc="{{resultHtml | trust}}" class="iframe-result"></iframe> -->
-              <iframe flex ng-src="{{resultUrl}}" class="iframe-result"></iframe>
-            </md-content>
-          </md-content>
-
-<!--           <div flex class="relative">
-            <div id="editor">
-              <div id="col-code" layout="column">
-                <md-card ng-class="{flex: conf.show.html}">
-                  <md-toolbar>
-                    <div class="md-toolbar-tools">
-                      <md-button ng-click="conf.show.html=!conf.show.html" aria-label="Ver HTML" class="md-icon-button">
-                        <md-icon md-svg-icon="{{conf.show.html?'down':'up'}}"></md-icon>
-                      </md-button>
-                      <h3>HTML</h3>
-                      <span flex></span>
-                    </div>
-                  </md-toolbar>
-                  <md-content flex ng-model="code.html" ui-ace="aceOptions('html')"></md-content>
-                </md-card>
-                <md-card ng-class="{flex: conf.show.css}">
-                  <md-toolbar>
-                    <div class="md-toolbar-tools">
-                      <md-button ng-click="conf.show.css=!conf.show.css" aria-label="Ver HTML" class="md-icon-button">
-                        <md-icon md-svg-icon="{{conf.show.css?'down':'up'}}"></md-icon>
-                      </md-button>
-                      <h3>CSS</h3>
-                    </div>
-                  </md-toolbar>
-                  <md-content flex ng-model="code.css" ui-ace="aceOptions('css')"></md-content>
-                </md-card>
-                <md-card ng-class="{flex: conf.show.js}">
-                  <md-toolbar>
-                    <div class="md-toolbar-tools">
-                      <md-button ng-click="conf.show.js=!conf.show.js" aria-label="Ver HTML" class="md-icon-button">
-                        <md-icon md-svg-icon="{{conf.show.js?'down':'up'}}"></md-icon>
-                      </md-button>
-                      <h3>JS</h3>
-                    </div>
-                  </md-toolbar>
-                  <md-content flex ng-model="code.js" ui-ace="aceOptions('javascript')"></md-content>
-                </md-card>
-              </div>
-              <div id="col-result" layout="column">
-                <md-card flex>
-                  <md-toolbar>
-                    <div class="md-toolbar-tools">
-                      <h3>Preview</h3>
-                      <span flex></span>
-                    </div>
-                  </md-toolbar>
-                  <md-content flex layout="column">
-                    <iframe flex ng-src="{{selected.url}}" class="iframe-result"></iframe>
-                  </md-content>
-                </md-card>
-              </div>
             </div>
-          </div> -->
+          </md-content>
+        </md-toolbar>
+
+      </md-sidenav>
+
+      <section flex id="main-files" layout="column">
+        <md-toolbar class="bbottom">
+          <div class="md-toolbar-tools">
+            <h3>{{selected.name}}</h3>
+            <span flex></span>
+            <md-button ng-click="add()" aria-label="Nuevo" class="md-icon-button" ng-show="isLocal">
+              <md-icon md-svg-icon="add"></md-icon>
+            </md-button>
+            <md-button ng-click="setup($event)" aria-label="Editar" class="md-icon-button md-hue-1">
+              <md-icon md-svg-icon="settings"></md-icon>
+            </md-button>
+            <md-button ng-click="m.save()" aria-label="Guardar" class="md-icon-button">
+              <md-icon md-svg-icon="save"></md-icon>
+            </md-button>
+            <md-button ng-click="m.play()" aria-label="Ejecutar" class="md-icon-button">
+              <md-icon md-svg-icon="play"></md-icon>
+            </md-button>
+          </div>
+        </md-toolbar>
+        <md-tabs flex layout="column" class="md-primary">
+          <md-tab flex ng-repeat="(url, code) in codes">
+            <md-tab-label>{{url}}</md-tab-label>
+            <md-tab-body flex layout="column">
+              <md-content ng-model="code.code" ui-ace="aceOptions(code.type)"></md-content>
+            </md-tab-body>
+          </md-tab>
+        </md-tabs>
+      </section>
+
+      <section flex layout="column">
+        <md-toolbar class="bbottom">
+          <div class="md-toolbar-tools">
+            <h3>Preview</h3>
+          </div>
+        </md-toolbar>
+        <md-content flex layout="column">
+          <iframe flex ng-src="{{resultUrl}}" class="iframe-result"></iframe>
         </md-content>
+      </section>
 
-      </md-content>
+    </md-content>
 
-    </div>
-    
     <script src="vendor/ace/ace.js"></script>
 
     <script src="vendor/angular.min.js"></script>

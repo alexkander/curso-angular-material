@@ -6,6 +6,9 @@ $md-cards-padding = 2px
 $tool-bar-height = 40px
 $list-item-height = 40px
 
+body
+  background-color: white
+  
 md-toolbar
   h3
     margin: auto 0
@@ -40,10 +43,13 @@ md-list-item
 md-list-item .md-list-item-inner
   height: $list-item-height
   min-height: $list-item-height
-  
-.content
-  background-color: #F1F1F1
 
+.bbottom
+  border-bottom: solid 1px #fff2
+
+.bright
+  border-right: solid 1px #fff2
+    
 .relative
   position: relative
   
@@ -61,15 +67,14 @@ md-list-item .md-list-item-inner
   // md-content
   //   overflow: hidden
     
-#main-section
-  z-index: 4
-
 #main-files
   z-index: 3
   md-tab-content
     >div
     >div>md-content
       height:100%;
+  .ace-tm
+    background-color: #f4f4f4
   
   
 #editor

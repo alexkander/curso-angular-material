@@ -61,6 +61,13 @@ angular.module('app', ['ngMaterial', 'ngSanitize', 'ui.ace'])
 
       };
 
+      $scope.cancelModal = function(){
+
+        $mdDialog.cancel();
+        $scope.record = null;
+
+      };
+
       $scope.aceOptions = function(mode){
 
         return {
@@ -71,15 +78,36 @@ angular.module('app', ['ngMaterial', 'ngSanitize', 'ui.ace'])
               fontSize: '16px',
               tabSize: 2,
             });
+            _editor.commands.addCommand({
+              name: 'save',
+              bindKey: {win: "Ctrl-S", "mac": "Cmd-S"},
+              exec: function(editor) {
+                $scope.$emit('codedit.save');
+              }
+            });
+            _editor.commands.addCommand({
+              name: 'play',
+              bindKey: {win: "Ctrl-P", "mac": "Cmd-P"},
+              exec: function(editor) {
+                $scope.$emit('codedit.save');
+              }
+            });
+            _editor.commands.addCommand({
+              name: 'setup',
+              bindKey: {win: "Ctrl-Q", "mac": "Cmd-Q"},
+              exec: function(editor) {
+                $scope.$emit('codedit.setup');
+              }
+            });
+            // _editor.commands.addCommand({
+            //   name: 'add',
+            //   bindKey: {win: "Ctrl-space", "mac": "Cmd-space"},
+            //   exec: function(editor) {
+            //     $scope.$emit('codedit.add');
+            //   }
+            // });
           }
         };
-
-      };
-
-      $scope.cancelModal = function(){
-
-        $mdDialog.cancel();
-        $scope.record = null;
 
       };
 
@@ -140,11 +168,9 @@ angular.module('app', ['ngMaterial', 'ngSanitize', 'ui.ace'])
               }[url.split('.').pop()],
             };
 
-            promises.push($http.get(record.url + url + '?' + count).then(
+            promises.push($http.get(record.url + url + '?' + (count++)).then(
               function(response){ $scope.codes[url].code = response.data;}
             ));
-
-            count++;
 
           });
 
@@ -195,7 +221,8 @@ angular.module('app', ['ngMaterial', 'ngSanitize', 'ui.ace'])
 
                 ddd.records[id] = newRecord;
 
-                server.select(newRecord);
+                $scope.selected = newRecord;
+                server.play();
                 $mdDialog.hide();
 
               }
@@ -227,7 +254,7 @@ angular.module('app', ['ngMaterial', 'ngSanitize', 'ui.ace'])
 
         play: function(){
 
-          $scope.resultUrl = $scope.selected.url;
+          $scope.resultUrl = $scope.selected.url + '?' + (count++);
 
         },
 
@@ -251,6 +278,17 @@ angular.module('app', ['ngMaterial', 'ngSanitize', 'ui.ace'])
         }
       };
 
+      $scope.$on('codedit.add', function(){
+        $scope.add();
+      });
+
+      $scope.$on('codedit.save', function(){
+        $scope.m.save();
+      });
+
+      $scope.$on('codedit.setup', function(){
+        $scope.setup();
+      });
 
       $scope.linksAndScripts = serverService.linksAndScripts();
 
