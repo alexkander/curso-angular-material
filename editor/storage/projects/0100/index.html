@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+a[target] {
+    background-color: yellow;
+}
+a[target=_blank] {
+    background-color: cyan;
+}
+[title~=flower] {
+    border: 5px solid yellow;
+}
+[class|=top] {
+    background: lime;
+}
+[class^="top"] {
+    color: green;
+}
+[class$="test"] {
+    background: yellow;
+}
+[class*="te"] {
+    color: lime;
+}
+</style>
+</head>
+<body>
+
+<p>The links with a target attribute gets a yellow background:</p>
+
+<a href="http://www.w3schools.com">w3schools.com</a>
+<a href="http://www.disney.com" target="_blank">disney.com</a>
+<a href="http://www.wikipedia.org" target="_top">wikipedia.org</a>
+
+<p title="The flower in summer"><b>Note:</b> For [<i>attribute</i>] to work in IE8 and earlier, a DOCTYPE must be declared.</p>
+
+<h1 class="top-header">Welcome</h1>
+<p class="top-text">Hello world!</p>
+<p class="topcontent">Are you learning CSS?</p>
+
+<div class="first_test">The first div element.</div>
+<div class="testsecond">The second div element.</div>
+<div class="my-test">The third div element.</div>
+<p class="mytest">This is some text in a paragraph.</p>
+
+</body>
+</html>
