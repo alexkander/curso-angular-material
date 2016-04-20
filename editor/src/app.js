@@ -112,18 +112,24 @@ angular.module('app', ['ngMaterial', 'ngSanitize', 'ui.ace'])
       };
 
       $scope.add = function(){
-        $scope.selected = {};
         $scope.codes = {
           'index.html': { code: '', type: 'html', },
           'scripts.js': { code: '', type: 'javascript', },
           'styles.css': { code: '', type: 'css', },
+        };
+        $scope.selected = {
+          codes: [
+            'index.html',
+            'scripts.js',
+            'styles.css',
+          ]
         };
         $scope.m.play();
       };
 
       $scope.setup = function(ev){
         $scope.record = angular.extend({}, $scope.selected);
-        $scope.m.select($scope.selected);
+        // $scope.m.select($scope.selected);
         $mdDialog.show({
           parent: angular.element(document.body),
           targetEvent: ev,
@@ -158,7 +164,7 @@ angular.module('app', ['ngMaterial', 'ngSanitize', 'ui.ace'])
           $scope.selected = record;
           $scope.codes = {};
 
-          angular.forEach(record.files, function(url){
+          angular.forEach(record.codes, function(url){
             $scope.codes[url] = {
               code: '',
               type: {
@@ -168,9 +174,11 @@ angular.module('app', ['ngMaterial', 'ngSanitize', 'ui.ace'])
               }[url.split('.').pop()],
             };
 
-            promises.push($http.get(record.url + url + '?' + (count++)).then(
-              function(response){ $scope.codes[url].code = response.data;}
-            ));
+            if(record.url){
+              promises.push($http.get(record.url + url + '?' + (count++)).then(
+                function(response){ $scope.codes[url].code = response.data;}
+              ));
+            }
 
           });
 
@@ -254,7 +262,10 @@ angular.module('app', ['ngMaterial', 'ngSanitize', 'ui.ace'])
 
         play: function(){
 
-          $scope.resultUrl = $scope.selected.url + '?' + (count++);
+          if($scope.selected.url)
+            $scope.resultUrl = $scope.selected.url + '?' + (count++);
+          else
+            $scope.resultUrl = null;
 
         },
 

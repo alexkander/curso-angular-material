@@ -92,7 +92,7 @@
           </div>
         </md-toolbar>
         <md-tabs flex layout="column" class="md-primary">
-          <md-tab flex ng-repeat="(url, code) in codes">
+          <md-tab flex ng-repeat="(url, code) in codes" ng-if="code.type">
             <md-tab-label>{{url}}</md-tab-label>
             <md-tab-body flex layout="column">
               <md-content ng-model="code.code" ui-ace="aceOptions(code.type)"></md-content>
@@ -108,7 +108,7 @@
           </div>
         </md-toolbar>
         <md-content flex layout="column">
-          <iframe flex ng-src="{{resultUrl}}" class="iframe-result"></iframe>
+          <iframe flex ng-src="{{resultUrl}}" ng-if="resultUrl" class="iframe-result"></iframe>
         </md-content>
       </section>
 

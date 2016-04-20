@@ -49,7 +49,7 @@ function chechkMethod($methodName){
 
 }
 
-function amGlobFiles($folders, array $options = array()){
+function amGlob($folders, array $options = array()){
 
   // Convertir en array si no es un array.
   if(!is_array($folders))
@@ -119,7 +119,7 @@ function amGlobFiles($folders, array $options = array()){
       // Si es un directorio se pide explorar recursivamente
       if(is_dir($item) && $options['recursive'] === true){
 
-        $ret = array_merge($ret, amGlobFiles($item, $options));
+        $ret = array_merge($ret, amGlob($item, $options));
 
       }
 
@@ -302,12 +302,22 @@ class Project{
 
   }
 
+  public function codes(){
+
+    $dir = $this->dir();
+    return amGlob($dir, [
+      'root' => $dir,
+      'include' => '/.*\.(html|css|js)$/',
+    ]);
+
+  }
+
   public function files(){
 
     $dir = $this->dir();
-    return amGlobFiles($dir, [
+    return amGlob($dir, [
       'root' => $dir,
-      'exclude' => '/\.json$/',
+      'exclude' => '/\.(html|css|js)$/',
     ]);
 
   }
@@ -325,6 +335,7 @@ class Project{
       'name' => $this->name,
       'type' => $this->type,
       'url' => $this->url(),
+      'codes' => $this->codes(),
       'files' => $this->files(),
     ];
 
@@ -391,7 +402,9 @@ class Project{
 
     $fn = function($item, &$key) use(&$groups){
 
-      $key = intval(basename($item));
+      $basename = basename($item);
+
+      $key = intval($basename);
       $p = new Project($key);
 
       if(!isset($groups[$p->type]))
@@ -403,11 +416,12 @@ class Project{
 
     };
 
-    $ret = amGlobFiles(PROJECTS_DIR, [
+    $ret = amGlob(PROJECTS_DIR, [
       'dirs' => true,
       'files' => false,
       'recursive' => false,
-      'callback' => $fn]);
+      'callback' => $fn,
+    ]);
 
     return array('groups' => $groups, 'records' => $ret);
 
